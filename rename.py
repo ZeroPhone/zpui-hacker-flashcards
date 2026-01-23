@@ -15,13 +15,13 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 new_name = sys.argv[1]
+if "-" in new_name:
+    new_name = new_name.replace("-", "_")
+    print("name not allowed to contain '-' (special symbol in Python), changing to {}".format(new_name))
+
 if not new_name.startswith("zpui_"):
     print("name has to start with 'zpui_' (got: {})".format(repr(new_name)))
     sys.exit(1)
-
-if "-" in new_name:
-    new_name = new_name.replace("-", "_")
-    print("name not allowed to contain '-' (special symbol in Python), renaming to {}".format(new_name))
 
 replace_in_file("pyproject.toml", old_name, new_name)
 old_name_dash = old_name.replace("zpui_", "zpui-")
