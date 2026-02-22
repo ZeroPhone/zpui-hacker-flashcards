@@ -1,0 +1,1 @@
+from zpui_hacker_flashcards import app
